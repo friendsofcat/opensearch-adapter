@@ -15,12 +15,6 @@
             "email": "babenko.i.a@gmail.com"
         }
     ],
-    "repositories": {
-        "friendsofcat/opensearch-client": {
-            "type": "vcs",
-            "url": "git@github.com:friendsofcat/opensearch-client.git"
-        }
-    },
     "autoload": {
         "psr-4": {
             "OpenSearch\\Adapter\\": "src"
