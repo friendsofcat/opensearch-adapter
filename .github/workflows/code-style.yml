@@ -4,7 +4,7 @@ on:
   push:
     branches:
       - "**"
-      - '!master' # excludes mainline
+      - '!master' # excludes master
     tags-ignore:
       - "*.*"
 
