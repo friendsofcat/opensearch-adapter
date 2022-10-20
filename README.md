@@ -433,17 +433,6 @@ $searchParameters->preference('_local');
 // use pagination
 $searchParameters->from(0)->size(20);
 
-// search after
-$searchParameters->pointInTime([
-    'id' => '46ToAwMDaWR5BXV1',
-    'keep_alive' => '1m',
-]);
-
-$searchParameters->searchAfter([
-    '2021-05-20T05:30:04.832Z',
-    4294967298,
-]);
-
 // use custom routing
 $searchParameters->routing(['user1', 'user2']);
 
@@ -481,31 +470,4 @@ Switch OpenSearch connection:
 
 ```php
 $documentManager->connection('my_connection');
-```
-
-## Point in Time Management
-
-`\OpenSearch\Adapter\Search\PointInTimeManager` is used to control points in time.
-
-### Open
-
-Open a point in time:
-
-```php
-$pointInTimeId = $pointInTimeManager->open('my_index', '1m');
-```
-### Close
-
-Close a point in time:
-
-```php
-$pointInTimeManager->close($pointInTimeId);
-```
-
-### Connection
-
-Switch OpenSearch connection:
-
-```php
-$pointInTimeManager->connection('my_connection');
 ```
