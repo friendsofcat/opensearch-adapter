@@ -16,7 +16,7 @@ OpenSearch Adapter is an adapter for the official PHP OpenSearch client. It's de
 The current version of OpenSearch Adapter has been tested with the following configuration:
 
 * PHP 7.4-8.x
-* OpenSearch 1.x
+* OpenSearch 2.x
 * Laravel 6.x-8.x
 
 ## Installation
@@ -91,7 +91,7 @@ $mapping = [
     'properties' => [
         'title' => [
             'type' => 'text'
-        ]   
+        ]
     ]
 ];
 
@@ -134,7 +134,7 @@ $mapping = [
     'properties' => [
         'title' => [
             'type' => 'text'
-        ]   
+        ]
     ]
 ];
 
@@ -151,7 +151,7 @@ $settings = (new \OpenSearch\Adapter\Indices\Settings())
         'analyzer' => [
             'content' => [
                 'type' => 'custom',
-                'tokenizer' => 'whitespace'    
+                'tokenizer' => 'whitespace'
             ]
         ]
     ]);
@@ -248,7 +248,7 @@ $indexManager->connection('my_connection');
 
 ## Document Management
 
-`\OpenSearch\Adapter\Documents\DocumentManager` is used to manage and search documents. 
+`\OpenSearch\Adapter\Documents\DocumentManager` is used to manage and search documents.
 
 ### Index
 
@@ -440,7 +440,7 @@ $searchParameters->routing(['user1', 'user2']);
 $searchResult = $documentManager->search($searchParameters);
 
 // get the total number of matching documents
-$total = $searchResult->total(); 
+$total = $searchResult->total();
 
 // get the corresponding hits
 $hits = $searchResult->hits();
