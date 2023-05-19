@@ -349,4 +349,16 @@ final class SearchParametersTest extends TestCase
         $searchParameters = (new SearchParameters())->routing(['foo', 'bar']);
         $this->assertSame(['routing' => 'foo,bar'], $searchParameters->toArray());
     }
+
+    public function test_array_casting_with_explain(): void
+    {
+        $searchParametersOne = (new SearchParameters())->explain();
+        $this->assertSame(['explain' => true], $searchParametersOne->toArray());
+
+        $searchParametersTwo = (new SearchParameters())->explain(true);
+        $this->assertSame(['explain' => true], $searchParametersTwo->toArray());
+
+        $searchParametersThree = (new SearchParameters())->explain(false);
+        $this->assertSame(['explain' => false], $searchParametersThree->toArray());
+    }
 }

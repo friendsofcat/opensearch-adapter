@@ -134,6 +134,12 @@ final class SearchParameters implements Arrayable
         return $this;
     }
 
+    public function explain(bool $explain = true): self
+    {
+        $this->params['explain'] = $explain;
+        return $this;
+    }
+
     public function toArray(): array
     {
         return $this->params;
