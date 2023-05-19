@@ -4,6 +4,7 @@ namespace OpenSearch\Adapter\Tests\Unit\Search;
 
 use Illuminate\Support\Collection;
 use OpenSearch\Adapter\Documents\Document;
+use OpenSearch\Adapter\Search\Explanation;
 use OpenSearch\Adapter\Search\Highlight;
 use OpenSearch\Adapter\Search\Hit;
 use PHPUnit\Framework\TestCase;
@@ -56,6 +57,11 @@ final class HitTest extends TestCase
                         ],
                     ],
                 ],
+            ],
+            '_explanation' => [
+                'value' => 4.2008432,
+                'description' => 'weight(foo:bar in 0) [PerFieldSimilarity], result of:',
+                'details' => [],
             ],
         ]);
     }
@@ -153,11 +159,35 @@ final class HitTest extends TestCase
                     ],
                 ],
             ],
+            '_explanation' => [
+                'value' => 4.2008432,
+                'description' => 'weight(foo:bar in 0) [PerFieldSimilarity], result of:',
+                'details' => [],
+            ],
         ], $this->hit->raw());
     }
 
     public function test_inner_hits_total_can_be_retrieved(): void
     {
         $this->assertSame(1, $this->hit->innerHitsTotal()->get('nested'));
+    }
+
+    public function test_explanation_can_be_retrieved_if_present(): void
+    {
+        $this->assertEquals(
+            new Explanation([
+                'value' => 4.2008432,
+                'description' => 'weight(foo:bar in 0) [PerFieldSimilarity], result of:',
+                'details' => [],
+            ]),
+            $this->hit->explaination()
+        );
+    }
+
+    public function test_nothing_is_returned_when_trying_to_retrieve_explanation_but_it_is_not_present(): void
+    {
+        $hit = new Hit(['_id' => '1']);
+
+        $this->assertNull($hit->explaination());
     }
 }
