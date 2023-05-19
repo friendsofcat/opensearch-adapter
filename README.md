@@ -354,6 +354,9 @@ $searchParameters->suggest([
 // enable source filtering
 $searchParameters->source(['message', 'post_date']);
 
+// retrieve score explanation
+$searchParamaters->explain();
+
 // collapse fields
 $searchParameters->collapse([
     'field' => 'user'
@@ -454,6 +457,7 @@ foreach ($hits as $hit) {
     $highlight = $hit->highlight();
     $innerHits = $hit->innerHits();
     $innerHitsTotal = $hit->innerHitsTotal();
+    $innerHitsTotal = $hit->explanation();
     $raw = $hit->raw();
 }
 
